@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <!-- =====BOX ICONS===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>BIOREACTOR</title>
+    </head>
+    <body>
+        <!--===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a href="index.html">
+
+                    <IMG class="displayed" src="./assets/logo.jpg" alt="logo" 
+                    style="height: 50px ;"/>
+
+                    <!-- <a href="#" class="nav__logo">BIOREACTOR</a> -->
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link active">Home</a></li>
+                         <li class="nav__item"><a href="index.html" class="nav__link">About</a></li>
+                        <!-- <li class="nav__item"><a href="#about" class="nav__link">Research</a></li> -->
+                        <li class="nav__item"><a href="index.html" class="nav__link">Modules</a></li>
+                        <!-- <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li> -->
+                        <!-- <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li> -->
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+        <!-- <HOME> -->
+        
+                <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <img src="./assets/img/cansat1.jpg" alt="logo" class="image">
+                <!-- <a href="http://surl.li/ccwrc"> -->
+               <!--  <div class="overlay">
+                <div class="text">Bioreactor</div> -->
+                </a>
+            </div>
+    </div>
+</div>
+</section>
+
+<!-- <============TEXT================ -->
+     <section class="home bd-grid" id="home">
+                <div class="home__data">
+                    <center> <h1 class="home__title">CANSAT <span class="home__title-color"></span> </h1> <center>
+                
+                        A CANSAT is a simulation of a real satellite, integrated within the volume and shape of a soft drink can. The challenge for the students is to fit all the major subsystems found in a satellite, such as power, sensors, and a communication system, into this minimal volume. The CANSAT is then launched to an altitude of a few hundred metres by a rocket or dropped from a platform or captive balloon and its mission begins: to carry out a scientific experiment and achieve a safe landing.
+                        CANSATs offer a unique opportunity for students to have a first practical experience of a real space project. They are responsible for all aspects: designing the CANSAT, selecting its mission, integrating the components, testing, preparing for launch and then analysing the data.
+                 <h5 class="section-title">Components
+                </h5>
+
+                <h2>Things used in this project</h2>
+
+                <table>
+                  <tr>
+                    <th>Hardware components</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td>3D Printed Mounts</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>9V Batteriesr</td>
+                    <td></td>
+                    <td>x 2</td>
+                  </tr>
+                  <tr>
+                    <td>Arduino UNO</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>BMP 280/180</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>    
+                Circuit Boards / Bread Boards</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>DS1307 RTC</td>
+                    <td></td>
+                    <td>x 1</td>
+                      </tr>
+                        <tr>
+                    <td>    
+            GPS Reciever Module</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Jumper Wires</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Adequate LEDS</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>MPU 6050</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Peizoelectric Buzzer</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td> SG 90 Servo Moter</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>SPST SLIDE Switch</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>SSD 1306 OLED</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td> Voltage Sensor</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td> XBEE S2C
+                    </td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+
+                </table>
+                </div>
+                <h2 class="section-title">CODE</h2>
+      <pre>
+        <code>
+                  #include < SoftwareSerial.h >
+                  #include < Adafruit_BMP085.h >
+                  #include "I2Cdev.h"
+                  #include "MPU6050.h"
+                  #include < Wire.h >
+                  #include "RTClib.h"
+                  
+                  Adafruit_BMP085 bmp;
+                  
+                  static const int RXPin = 4, TXPin = 3;
+                  static const uint32_t GPSBaud = 9600;
+                  SoftwareSerial ss(RXPin, TXPin);//transmit
+                  SoftwareSerial mySerial(10, 11); // RX, TX
+                  SoftwareSerial tr(12, 13); // RX, TX,xbee
+                  TinyGPSPlus gps;
+                  
+                  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
+                  #include "Wire.h"
+                  #endif
+                  
+                  MPU6050 accelgyro;
+                  int16_t ax, ay, az;
+                  int16_t gx, gy, gz;
+                  
+                  #define OUTPUT_READABLE_ACCELGYRO
+                  
+                  
+                  #define LED_PIN 13
+                  
+                  bool blinkState = false;
+                  RTC_DS1307 rtc;
+                  char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+                  int offset =20;// set the correction offset value
+                  
+                  #include < Servo.h >
+                  
+                  Servo myservo;
+                  int pos = 0;
+                  String fline = "",sline = "",tline = "";
+                  int x =0;
+                  
+                  void setup() {
+                  // put your setup code here, to run once:
+                      myservo.attach(9);
+                      Serial.begin(9600);
+                      if (!bmp.begin()) {
+                          Serial.println("Could not find a valid BMP085 sensor, check wiring!");
+                           while (1) {}
+                      }
+                      ss.begin(GPSBaud);
+                      Serial.println(F("FullExample.ino"));
+                  
+                      Serial.println(F("An extensive example of many interesting TinyGPS++ features"));
+                      Serial.print(F("Testing TinyGPS++ library v. ")); Serial.println(TinyGPSPlus::libraryVersion());
+                      Serial.println(F("by Mikal Hart"));
+                      Serial.println();
+                      Serial.println(F("Sats HDOP Latitude Longitude Fix Date Time Date Alt Course Speed Card Distance Course Card Chars Sentences Checksum"));
+                 
+                      Serial.println(F(" (deg) (deg) Age Age (m) --- from GPS ---- ---- to London ---- RX RX Fail"));
+                      Serial.println(F("----------------------------------------------------------------------------------------------------------------------------------------"));
+                      Serial.println("Initializing I2C devices...");
+                      accelgyro.initialize();
+                      Serial.println("Testing device connections...");
+                      Serial.println(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
+                      pinMode(LED_PIN, OUTPUT);
+                      
+                      while (!Serial); // for Leonardo/Micro/Zero
+                      
+                      if (! rtc.begin()) {
+                          Serial.println("Couldn't find RTC");
+                          while (1);
+                      }
+                      if (! rtc.isrunning()) {
+                          Serial.println("RTC is NOT running!");
+                          rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+                      }
+                      while (!Serial) {; 
+                          // wait for serial port to connect. Needed for native USB port only
+                      }
+                      Serial.println("BIOREACTER SYSTEM");
+                  
+                      // set the data rate for the SoftwareSerial port
+                  
+                      tr.begin(9600);
+                      tr.println("Hello, world?");
+                  }
+                  
+                  void loop() {
+                      Serial.print("Temperature = ");
+                      Serial.print(bmp.readTemperature());
+                      Serial.println(" *C");
+                      Serial.print("Pressure = ");
+                      Serial.print(bmp.readPressure());
+                      Serial.println(" Pa");
+                  
+                  // Calculate altitude assuming 'standard' barometric
+                  // pressure of 1013.25 millibar = 101325 Pascal
+                  
+                      Serial.print("Altitude = ");
+                      Serial.print(bmp.readAltitude());
+                      Serial.println(" meters");
+                      Serial.print("Pressure at sealevel (calculated) = ");
+                      Serial.print(bmp.readSealevelPressure());
+                      Serial.println(" Pa");
+                  
+                  // you can get a more precise measurement of altitude
+                  // if you know the current sea level pressure which will
+                  // vary with weather and such. If it is 1015 millibars
+                  // that is equal to 101500 Pascals.
+                      Serial.print("Real altitude = ");
+                      Serial.print(bmp.readAltitude(101500));
+                      Serial.println(" meters");
+                      Serial.println();
+                      delay(500);
+                      static const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
+                      printInt(gps.satellites.value(), gps.satellites.isValid(), 5);
+                      printFloat(gps.hdop.hdop(), gps.hdop.isValid(), 6, 1);
+                      printFloat(gps.location.lat(), gps.location.isValid(), 11, 6);
+                      printFloat(gps.location.lng(), gps.location.isValid(), 12, 6);
+                      printInt(gps.location.age(), gps.location.isValid(), 5);
+                
+                      printDateTime(gps.date, gps.time);
+                      printFloat(gps.altitude.meters(), gps.altitude.isValid(), 7, 2);
+                      printFloat(gps.course.deg(), gps.course.isValid(), 7, 2);
+                      printFloat(gps.speed.kmph(), gps.speed.isValid(), 6, 2);
+                      printStr(gps.course.isValid() ? TinyGPSPlus::cardinal(gps.course.deg()) : "*** ", 6);
+                      unsigned long distanceKmToLondon =
+                      (unsigned long)TinyGPSPlus::distanceBetween(
+                      gps.location.lat(),
+                      gps.location.lng(),
+                      LONDON_LAT,
+                      LONDON_LON) / 1000;
+                      printInt(distanceKmToLondon, gps.location.isValid(), 9);
+                      double courseToLondon =
+                      TinyGPSPlus::courseTo(
+                      gps.location.lat(),
+                      gps.location.lng(),
+                      LONDON_LAT,
+                      LONDON_LON);
+                      printFloat(courseToLondon, gps.location.isValid(), 7, 2);
+                      const char *cardinalToLondon = TinyGPSPlus::cardinal(courseToLondon);
+                      printStr(gps.location.isValid() ? cardinalToLondon : "*** ", 6);
+                      
+                      printInt(gps.charsProcessed(), true, 6);
+                      printInt(gps.sentencesWithFix(), true, 10);
+                      printInt(gps.failedChecksum(), true, 9);
+                      Serial.println();
+                      smartDelay(1000);
+                      
+                      if (millis() > 5000 && gps.charsProcessed() < 10)
+                          Serial.println(F("No GPS data received: check wiring"));
+                    }
+                  
+                  // This custom version of delay() ensures that the gps object
+                  // is being "fed".
+                  
+                  static void smartDelay(unsigned long ms)
+                  {
+                      unsigned long start = millis();
+                      do
+                      {
+                          while (ss.available())
+                          gps.encode(ss.read());
+                      } while (millis() - start < ms);
+                  }
+                  
+                  static void printFloat(float val, bool valid, int len, int prec)
+                    {
+                      if (!valid)
+                      {
+                          while (len-- > 1)
+                          Serial.print('*');
+                          Serial.print(' ');
+                      }
+                      else
+                      {
+                          Serial.print(val, prec);
+                          int vi = abs((int)val);
+                          int flen = prec + (val < 0.0 ? 2 : 1); // . and -
+                          flen += vi >= 1000 ? 4 : vi >= 100 ? 3 : vi >= 10 ? 2 : 1;
+                          for (int i=flen; i< len; ++i)
+                            Serial.print('  ');
+                      }
+                      smartDelay(0);
+                    }
+                  
+                  static void printInt(unsigned long val, bool valid, int len)
+                  
+                  {
+                      char sz[32] = "*****************";
+                   
+                      if (valid)
+                          sprintf(sz, " %ld ", val);
+                          sz[len] = 0;
+                  
+                      for (int i=strlen(sz); i < len; ++i)
+                          sz[i] = ' ';
+                    
+                      if (len > 0)
+                          sz[len-1] = ' ';
+                          Serial.print(sz);
+                          smartDelay(0);
+                  }
+                  
+                  static void printDateTime(TinyGPSDate &d, TinyGPSTime &t)
+                  {
+                    if (!d.isValid())
+                    {
+                        Serial.print(F("********** "));
+                    }
+                    else
+                    {
+                        char sz[32];
+                        sprintf(sz, "%02d/%02d/%02d ", d.month(), d.day(), d.year());
+                        Serial.print(sz);
+                    }
+                      
+                    if (!t.isValid())
+                    {
+                        Serial.print(F("******** "));
+                    }
+                    else
+                    {
+                        char sz[32];
+                        sprintf(sz, "%02d:%02d:%02d ", t.hour(), t.minute(), t.second());
+                        Serial.print(sz);
+                    }
+                    printInt(d.age(), d.isValid(), 5);
+                    smartDelay(0);
+                  }
+                  
+                  static void printStr(const char *str, int len)
+                  {
+                      int slen = strlen(str);
+                      for (int i=0; i< len; ++i)
+                          Serial.print(i< slen ? str[i] : ' ');
+                          smartDelay(0);
+                          accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+                  
+                  #ifdef OUTPUT_READABLE_ACCELGYRO
+                 
+                  Serial.print("a/g:\t");
+                  Serial.print(ax); Serial.print("\t");
+                  Serial.print(ay); Serial.print("\t");
+                  Serial.print(az); Serial.print("\t");
+                  Serial.print(gx); Serial.print("\t");
+                  Serial.print(gy); Serial.print("\t");
+                  Serial.println(gz);
+                  
+                  #endif
+                  #ifdef OUTPUT_BINARY_ACCELGYRO
+                  Serial.write((uint8_t)(ax >> 8)); Serial.write((uint8_t)(ax & 0xFF));
+                  Serial.write((uint8_t)(ay >> 8)); Serial.write((uint8_t)(ay & 0xFF));
+                  Serial.write((uint8_t)(az >> 8)); Serial.write((uint8_t)(az & 0xFF));
+                  Serial.write((uint8_t)(gx >> 8)); Serial.write((uint8_t)(gx & 0xFF));
+                  Serial.write((uint8_t)(gy >> 8)); Serial.write((uint8_t)(gy & 0xFF));
+                  Serial.write((uint8_t)(gz >> 8)); Serial.write((uint8_t)(gz & 0xFF));
+                 
+                  #endif
+                  
+                  blinkState = !blinkState;
+                  digitalWrite(LED_PIN, blinkState);
+                  
+                  DateTime now = rtc.now();
+                  Serial.print(now.year(), DEC);
+                  Serial.print('/');
+                  Serial.print(now.month(), DEC);
+                  Serial.print('/');
+                  Serial.print(now.day(), DEC);
+                  Serial.print(" (");
+                  Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
+                  Serial.print(") ");
+                  Serial.print(now.hour(), DEC);
+                  Serial.print(':');
+                  Serial.print(now.minute(), DEC);
+                  Serial.print(':');
+                  Serial.print(now.second(), DEC);
+                  Serial.println();
+                  Serial.print(" since midnight 1/1/1970 = ");
+                  Serial.print(now.unixtime());
+                  Serial.print("s = ");
+                  Serial.print(now.unixtime() / 86400L);
+                  Serial.println("d");
+                 
+                  // calculate a date which is 7 days and 30 seconds into the future
+                  
+                  DateTime future (now + TimeSpan(7, 12, 30, 6));
+                  Serial.print(" now + 7d + 30s: ");
+                  Serial.print(future.year(), DEC);
+                  Serial.print('/');
+                  Serial.print(future.month(), DEC);
+                  Serial.print('/');
+                  Serial.print(future.day(), DEC);
+                  Serial.print(' ');
+                  Serial.print(future.hour(), DEC);
+                  Serial.print(':');
+                  Serial.print(future.minute(), DEC);
+                  Serial.print(':');
+                  Serial.print(future.second(), DEC);
+                  Serial.println();
+                  Serial.println();
+                  delay(3000);
+                 
+                  int volt = analogRead(A0);// read the input
+                  double voltage = map(volt,0,1023, 0, 2500) + offset;// map 0-1023 to 0-2500 and add correction offset
+                  voltage /=100;// divide by 100 to get the decimal values
+                  Serial.print("Voltage: ");
+                  Serial.print(voltage);//print the voltge
+                  Serial.println("V");
+                  delay(500);
+                  
+                  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+                  
+                  // in steps of 1 degree
+                  
+                  myservo.write(pos); // tell servo to go to position in variable 'pos'
+                  delay(15); // waits 15ms for the servo to reach the position
+                  }
+                  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+                  
+                  myservo.write(pos); // tell servo to go to position in variable 'pos'
+                  delay(15); // waits 15ms for the servo to reach the position
+                  }
+                  unsigned long int gpsl =12345, gpslt =34567;
+                  int v=12,temp=20,hmd=23,p = 90, al= 200,ph=6,x=14,y=5,z=8,hr=15,m=30;
+                  //thisString =thisString+String(gpsl, DEC)+";"+ String(gpslt, DEC) +";"+String(temp, DEC)+";"+String(ph, DEC)+";"+String(x, DEC);
+                  // thisString =thisString+gpsl+";"+ gpslt+";"+temp+";"+ph+";"+x;
+                  fline="";
+                  fline =fline+ "1"+gpsl+" "+gpslt;
+                  sline="";
+                  sline = sline+"2"+v+"volt_"+temp+"°_"+hmd+"%_"+p+"Pa_"+al+"m";
+                  tline="";
+                  tline = tline+"3"+"X: "+x+" Y: "+y+" Z: "+z+" time:"+hr+":"+m;
+                  Serial.println(fline);
+                  tr.println(fline);delay(2000);
+                  tr.println(fline);delay(2000);
+                  Serial.println(sline);
+                  tr.println(sline);delay(2000);
+                  Serial.println(tline);
+                  tr.println(tline);delay(2000);
+                  }
+        </ code >
+    </ pre>
+ 
+            </section>
+
+    <!-- CODE -->
+    
+               
+
+
+            
+
+
+
+
+    <!--===== FOOTER =====-->
+        <footer class="footer">
+            <p class="footer__title">Bioreactor</p>
+          
+            <!-- <p class="footer__copy">&#169; Saipavan.All rigths reserved</p> -->
+        </footer>
+
+
+        <!--===== SCROLL REVEAL =====-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

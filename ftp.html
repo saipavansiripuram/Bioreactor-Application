@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <!-- =====BOX ICONS===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>BIOREACTOR</title>
+    </head>
+    <body>
+        <!--===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a href="index.html">
+
+                    <IMG class="displayed" src="./assets/logo.jpg" alt="logo" 
+                    style="height: 50px ;"/>
+
+                    <!-- <a href="#" class="nav__logo">BIOREACTOR</a> -->
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link active">Home</a></li>
+                         <li class="nav__item"><a href="index.html" class="nav__link">About</a></li>
+                        <!-- <li class="nav__item"><a href="#about" class="nav__link">Research</a></li> -->
+                        <li class="nav__item"><a href="index.html" class="nav__link">Modules</a></li>
+                        <!-- <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li> -->
+                        <!-- <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li> -->
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+        <!-- <HOME> -->
+        
+                <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <img src="assets/img/ftp.png" alt="logo" class="image">
+                <!-- <a href="http://surl.li/ccwrc"> -->
+               <!--  <div class="overlay">
+                <div class="text">Bioreactor</div> -->
+                </a>
+            </div>
+    </div>
+</div>
+</section>
+
+<!-- <============TEXT================ -->
+     <section class="home bd-grid" id="home">
+                <div class="home__data">
+                    <center> <h1 class="home__title">Flow Through Photometer <span class="home__title-color"></span> </h1> <center>
+                
+                        <p>This module comprises the development of a flow-through photometer and temperature sensor unit for the determination of culture density and temperature. </p>
+
+                        <br></br>
+
+                        <p>The culture is constantly pumped (peristaltic pump) through a glass tube where the OD is constantly measured. The photometer unit is based on a single module of the test tube photometer.</p>
+                      
+                 <h5 class="section-title">Components
+                </h5>
+
+                <h2>Things used in this project</h2>
+
+
+                <table>
+                  <tr>
+                    <th>Hardware components</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td>Arduino Nano R3</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Texas Instruments OPT101</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>LED (5 mm) 600nm</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>LCD 16x2 (generic)</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>    
+                I2C backpack (generic)</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Glass Pasteur Pipette (generic)</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                   <tr>
+                    <td>Resistor 500 kOhm</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Rotary potentiometer (generic)</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+
+                  <tr>
+                    <td>Breadboard (generic)</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Jumper wires (generic)</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Perestaltic Pump</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>Silicone Tubing</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                  <tr>
+                    <td>3D printed housing</td>
+                    <td></td>
+                    <td>x 1</td>
+                  </tr>
+                 
+
+                </table>
+                </div>
+                <h2 class="section-title">CODE</h2>
+      <pre>
+        <code>
+            #include < OneWire.h >
+            #define ONE_WIRE_BUS 4
+            #include < DallasTemperature.h >
+            #include < Wire.h >
+            #include < LiquidCrystal_I2C.h >
+            
+            // Set the LCD address to 0x27 for a 16 chars and 2 line display
+            
+            LiquidCrystal_I2C lcd(0x3F, 16, 2);
+            OneWire oneWire(ONE_WIRE_BUS);
+            DallasTemperature sensors(&oneWire);
+            float darksig = 0;
+            float lightsig = 0;
+            float total_signal = 0;
+            float total = 0;
+            float temp = 0;
+            float blank = 0;
+            float blanksignal = 0;
+            bool blanked = false;
+            int sensor = A0;  // output pin of OPT101 attached to Analog 0
+            int LEDpin = 2;    // LED + attached to D2
+            int Buttonpin = 3; // Button attached to D3
+            int buttonState = 0;
+
+            int counter = 0;
+
+            void setup() {
+              pinMode(Buttonpin, INPUT);
+              Serial.begin(9600);
+              delay(100);
+              
+              // initialize the LCD
+              
+              lcd.begin();
+              
+              // Turn on the blacklight and print a message.
+              
+              lcd.backlight();
+              counter = 10;
+              
+              for (int dummy = 0; dummy < 10; dummy++)
+                {
+
+                      buttonState = digitalRead(Buttonpin);
+                      if (buttonState == HIGH){
+                          counter = 20;
+                          for (int dummy = 0; dummy < 10; dummy++){
+                          lcd.setCursor(0, 0);
+                          lcd.print("                            ");
+                          lcd.setCursor(0, 1);
+                          lcd.print("                            ");
+                          lcd.setCursor(0, 0);
+                          lcd.print("Done in: ");
+                          lcd.print(counter);
+                          lcd.setCursor(0, 1);
+                          lcd.print("Blanking...");
+                          blanksignal = ODblank(1);
+                          blank = blank + blanksignal;
+                          counter = abs(counter - 1);
+                      }
+                      blanked = true;
+                      break;
+                      } else {
+                          blanked = false;
+                      }
+                 
+                      lcd.setCursor(0, 0);
+                      lcd.print("                            ");
+                      lcd.setCursor(0, 1);
+                      lcd.print("                            ");
+                      
+                      lcd.setCursor(0, 0);
+                      lcd.print("Starting in: ");
+                      lcd.print(counter);
+                      counter = abs(counter - 1);
+                      lcd.setCursor(0, 1);
+                      lcd.print("Press for blank!");
+                      delay(1000);
+                }
+              
+                      lcd.setCursor(0, 0);
+                      lcd.print("                                  ");
+                      lcd.setCursor(0, 0);
+                      lcd.print("Signal: ");
+
+                      lcd.setCursor(0, 1);
+                      lcd.print("                                  ");
+                      lcd.setCursor(0, 1);
+                      lcd.print("Temp: ");
+                      
+                      pinMode (2, OUTPUT); //for cell 1 LED
+                      delay(1000);
+            }
+
+            void loop() {
+              delay(100);
+       
+              ODmeasurement(10);
+              Serial.print(',');
+              TEMPmeasurement();
+              Serial.print('\n');
+               
+              delay(100);
+            }
+
+            float ODblank(int multiplier) {
+              darksig = 0;
+              digitalWrite(LEDpin, LOW); //ensures cell 1 LED is off!!!!
+              
+              for (int dummy = 0; dummy < multiplier; dummy++)
+              {
+                delay(100);
+                darksig = abs(darksig + analogRead(sensor));
+                delay(100);
+              }
+              delay(100);
+
+              lightsig = 0;
+              digitalWrite(LEDpin, HIGH); //turns exp LED on
+              delay(1000);
+              
+              for (int dummy = 0; dummy < multiplier; dummy++)
+              {
+                delay(100);
+                lightsig = (lightsig + analogRead(sensor));
+                delay(100);
+              }
+              delay(100);
+              digitalWrite(LEDpin, LOW); //ensures cell 1 LED is off!!!!
+              delay(1000);
+              
+              total_signal = abs(lightsig - darksig)/multiplier;
+              return total_signal;
+            }
+
+            void ODmeasurement(int multiplier) {
+              darksig = 0;
+              digitalWrite(LEDpin, LOW); //ensures cell 1 LED is off!!!!
+              
+              for (int dummy = 0; dummy < multiplier; dummy++)
+              {
+                delay(100);
+                darksig = abs(darksig + analogRead(sensor));
+                delay(100);
+              }
+              
+              delay(100);
+
+              lightsig = 0;
+              digitalWrite(LEDpin, HIGH); //turns exp LED on
+              delay(1000);
+              
+              for (int dummy = 0; dummy < multiplier; dummy++)
+              {
+                delay(100);
+                lightsig = (lightsig + analogRead(sensor));
+                delay(100);
+              }
+              delay(100);
+              digitalWrite(LEDpin, LOW); //ensures cell 1 LED is off!!!!
+              delay(1000);
+              
+              total_signal = abs(lightsig - darksig);
+
+              lcd.setCursor(0, 0);
+              lcd.print("                                  ");
+              lcd.setCursor(0, 0);
+              lcd.print("Signal: ");
+              if(blanked == true){
+                total = -log10(total_signal/(blank*multiplier));
+                lcd.print(total);
+                lcd.print(" OD");
+                delay(100);
+                Serial.print(total);
+              }
+              else {
+                lcd.print(total_signal);
+                delay(100);
+                Serial.print(total_signal);
+              }
+            }
+
+            void TEMPmeasurement() 
+            {
+              delay(500) ; 
+              sensors.requestTemperatures(); // Send the command to get temperature readings
+              temp = sensors.getTempCByIndex(0);
+              
+              lcd.setCursor(0, 1);
+              lcd.print("                                  ");
+              lcd.setCursor(0, 1);
+              lcd.print("Temp: ");
+              lcd.print(temp);
+              lcd.print(" C");
+              Serial.print(temp);
+            } 
+          }
+       }
+        </code>
+    </pre>
+
+            </section>
+
+    <!-- CODE -->
+    
+
+
+
+    <!--===== FOOTER =====-->
+        <footer class="footer">
+            <p class="footer__title">Bioreactor</p>
+          
+            <!-- <p class="footer__copy">&#169; Saipavan. All rigths reserved</p> -->
+        </footer>
+
+
+        <!--===== SCROLL REVEAL =====-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
